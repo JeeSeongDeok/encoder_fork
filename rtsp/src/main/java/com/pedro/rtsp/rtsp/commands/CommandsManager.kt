@@ -211,7 +211,7 @@ open class CommandsManager {
             "Range: npt=0.000-\r\n" +
             "CSeq: ${++cSeq}\r\n" +
             "User-Agent: com.pedro.rtsp 2.1.9\r\n" +
-            "Session: $sessionId\r\n\r\n"
+            "Session: ${sessionId ?: ""}\r\n\r\n"
   }
 
   fun createAnnounce(): String {
