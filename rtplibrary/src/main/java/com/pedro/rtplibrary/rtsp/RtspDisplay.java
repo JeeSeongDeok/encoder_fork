@@ -123,6 +123,7 @@ public class RtspDisplay extends DisplayBase {
 
   @Override
   protected void startStreamRtp(String url) {
+    rtspClient.setOnlyVideo(true);
     rtspClient.connect(url);
   }
 
