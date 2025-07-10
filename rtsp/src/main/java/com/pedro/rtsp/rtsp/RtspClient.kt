@@ -261,9 +261,7 @@ open class RtspClient(private val connectCheckerRtsp: ConnectCheckerRtsp) {
               return@post
             }
           }
-          val record = commandsManager.createRecordWithoutTransport()
-          Log.i(TAG, "==== RECORD request ====\n$record")
-          writer.write(record)
+          writer.write(commandsManager.createRecord())
           writer.flush()
           val recordStatus = commandsManager.getResponse(reader, Method.RECORD).status
           if (recordStatus != 200) {

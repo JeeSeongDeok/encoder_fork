@@ -76,7 +76,7 @@ open class CommandsManager {
     private set
 
   companion object {
-    private const val TAG = "CommandsManager"
+    private const val TAG = "RTSP_CommandsManager"
     private var authorization: String? = null
   }
 
@@ -201,8 +201,15 @@ open class CommandsManager {
 
   fun createRecord(): String {
     val record = "RECORD rtsp://$host:$port$path RTSP/1.0\r\n" +
-        "Range: npt=0.000-\r\n" + addHeaders() + "\r\n"
-    Log.i(TAG, record)
+            "Range: npt=0.000-\r\n" +
+            // 여기에 addHeaders()를 그대로 넣으면 Transport 헤더가 같이 붙으니,
+            // 직접 Session과 User-Agent만 추가:
+            "CSeq: ${++cSeq}\r\n" +
+            "User-Agent: ${BuildConfig.LIBRARY_PACKAGE_NAME} ${BuildConfig.VERSION_NAME}\r\n" +
+            (if (sessionId == null) "" else "Session: $sessionId\r\n") +
+            (if (authorization == null) "" else "Authorization: $authorization\r\n") +
+            "\r\n"
+    Log.i(TAG, "==== RECORD request ====\n$record")
     return record
   }
 
