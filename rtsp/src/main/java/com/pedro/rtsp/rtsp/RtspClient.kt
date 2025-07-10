@@ -107,7 +107,7 @@ open class RtspClient(private val connectCheckerRtsp: ConnectCheckerRtsp) {
     RtpConstants.trackVideo = 0
     RtpConstants.trackAudio = 1
     commandsManager.videoDisabled = false
-    commandsManager.audioDisabled = true
+    commandsManager.audioDisabled = onlyVideo
   }
 
   fun setProtocol(protocol: Protocol) {
@@ -140,7 +140,6 @@ open class RtspClient(private val connectCheckerRtsp: ConnectCheckerRtsp) {
 
   @JvmOverloads
   fun connect(url: String?, isRetry: Boolean = false) {
-    commandsManager.audioDisabled = true
     if (!isRetry) doingRetry = true
     if (url == null) {
       isStreaming = false
