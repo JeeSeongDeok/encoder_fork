@@ -206,6 +206,14 @@ open class CommandsManager {
     return record
   }
 
+  fun createRecordWithoutTransport(): String {
+    return "RECORD rtsp://$host:$port$path RTSP/1.0\r\n" +
+            "Range: npt=0.000-\r\n" +
+            "CSeq: ${++cSeq}\r\n" +
+            "User-Agent: com.pedro.rtsp 2.1.9\r\n" +
+            "Session: $sessionId\r\n\r\n"
+  }
+
   fun createAnnounce(): String {
     val body = createBody()
     val announce = "ANNOUNCE rtsp://$host:$port$path RTSP/1.0\r\n" +

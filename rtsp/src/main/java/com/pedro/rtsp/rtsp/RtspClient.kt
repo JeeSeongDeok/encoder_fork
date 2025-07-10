@@ -261,7 +261,7 @@ open class RtspClient(private val connectCheckerRtsp: ConnectCheckerRtsp) {
               return@post
             }
           }
-          writer.write(commandsManager.createRecord())
+          writer.write(commandsManager.createRecordWithoutTransport())
           writer.flush()
           val recordStatus = commandsManager.getResponse(reader, Method.RECORD).status
           if (recordStatus != 200) {
@@ -291,6 +291,7 @@ open class RtspClient(private val connectCheckerRtsp: ConnectCheckerRtsp) {
       }
     }
   }
+
 
   private fun handleServerCommands() {
     //Read and print server commands received each 2 seconds
