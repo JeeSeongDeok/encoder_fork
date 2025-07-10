@@ -145,7 +145,7 @@ open class CommandsManager {
     }
     var audioBody = ""
     if (!audioDisabled) {
-      audioBody = createAacBody(RtpConstants.trackAudio, sampleRate, isStereo)
+//      audioBody = createAacBody(RtpConstants.trackAudio, sampleRate, isStereo)
     }
     return "v=0\r\n" +
         "o=- $timeStamp $timeStamp IN IP4 127.0.0.1\r\n" +
@@ -154,7 +154,7 @@ open class CommandsManager {
         "c=IN IP4 $host\r\n" +
         "t=0 0\r\n" +
         "a=recvonly\r\n" +
-        videoBody + audioBody
+        videoBody
   }
 
   private fun createAuth(authResponse: String): String {
