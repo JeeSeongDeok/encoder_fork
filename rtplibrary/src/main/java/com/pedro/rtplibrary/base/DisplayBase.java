@@ -402,7 +402,7 @@ public abstract class DisplayBase implements GetAacData, GetVideoData, GetMicrop
       mediaProjection.createVirtualDisplay("Stream Display", videoEncoder.getWidth(),
               videoEncoder.getHeight(), dpi, 0, surface, null, null);
     }
-    if (audioInitialized) microphoneManager.start();
+//    if (audioInitialized) microphoneManager.start();
   }
 
   public void requestKeyFrame() {
