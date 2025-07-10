@@ -214,6 +214,7 @@ open class CommandsManager {
   }
 
   fun createRecordWithoutTransport(): String {
+    Log.i(TAG, "테스트 : sessionId == $sessionId")
     return "RECORD rtsp://$host:$port$path RTSP/1.0\r\n" +
             "Range: npt=0.000-\r\n" +
             "CSeq: ${++cSeq}\r\n" +
