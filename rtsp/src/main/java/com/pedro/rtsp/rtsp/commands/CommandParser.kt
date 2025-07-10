@@ -58,12 +58,10 @@ class CommandParser {
 
   fun getSessionId(command: Command): String {
     var sessionId = ""
-    val rtspPattern = Pattern.compile("Session:(\\s?[^;]+)")
+    val rtspPattern = Pattern.compile("Session:\\s*([^;\\r\\n]+)")
     val matcher = rtspPattern.matcher(command.text)
     if (matcher.find()) {
-      sessionId = matcher.group(1) ?: ""
-      val temp = sessionId.split(";")[0]
-      sessionId = temp.trim()
+      sessionId = matcher.group(1)?.trim() ?: ""
     }
     return sessionId
   }
